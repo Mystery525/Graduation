@@ -1,0 +1,166 @@
+[gd_scene load_steps=26 format=3 uid="uid://dh8o41aco5mgk"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_njwdw"]
+[ext_resource type="AudioStream" uid="uid://idosrn1df6sh" path="res://assets/Sounds/Flashlight.mp3" id="2_87lfq"]
+[ext_resource type="AudioStream" uid="uid://b6qwrdaob72ew" path="res://assets/Sounds/Heartbeat.mp3" id="3_up47l"]
+[ext_resource type="AudioStream" uid="uid://dfhsgimsls5kb" path="res://assets/Sounds/Radio Music/Radio_On.mp3" id="4_l7hj6"]
+[ext_resource type="AudioStream" uid="uid://hm6rlfluirko" path="res://assets/Sounds/Radio Music/Radio_Off.mp3" id="5_1sjyi"]
+[ext_resource type="AudioStream" uid="uid://yb3sf35618hw" path="res://assets/Sounds/Thunder.mp3" id="6_8tlay"]
+[ext_resource type="AudioStream" uid="uid://crsdqjkasia2s" path="res://assets/Sounds/keygrab.mp3" id="7_rdfpl"]
+[ext_resource type="Script" path="res://Scripts/FootSteps.gd" id="8_yy1fj"]
+[ext_resource type="AudioStream" uid="uid://bnigag6r28f" path="res://assets/Sounds/Footstep_carpet.mp3" id="9_2igav"]
+[ext_resource type="AudioStream" uid="uid://cowxwodwrobeq" path="res://assets/Sounds/Footstep_tile.mp3" id="10_d3k8f"]
+[ext_resource type="PackedScene" uid="uid://dgydqx0gw5l11" path="res://Scenes/Crosshair.tscn" id="11_hfppl"]
+[ext_resource type="AudioStream" uid="uid://b7t2llbfgmu7t" path="res://assets/Sounds/Footstep_Metal.mp3" id="11_p7ivx"]
+[ext_resource type="PackedScene" uid="uid://be751peo1555a" path="res://Scenes/objective_ui.tscn" id="12_1b2uu"]
+[ext_resource type="AudioStream" uid="uid://b3p7oqf325xin" path="res://assets/Sounds/Footstep_wet.mp3" id="12_c2dbe"]
+[ext_resource type="PackedScene" uid="uid://bw5jvo03goull" path="res://Scenes/pause_menu.tscn" id="13_3kmrg"]
+[ext_resource type="AudioStream" uid="uid://2vgq7c0hyio5" path="res://assets/Sounds/Footstep_Vent.mp3" id="13_wif7w"]
+[ext_resource type="Texture2D" uid="uid://bx7oldoycxtj7" path="res://assets/textures/flashlight_cookie.png" id="14_0nx16"]
+[ext_resource type="AudioStream" uid="uid://d2v8qkecus4w5" path="res://assets/Sounds/Footstep_Dirt.mp3" id="14_08ky5"]
+[ext_resource type="AudioStream" uid="uid://cg2pwalg82nj0" path="res://assets/Sounds/Flashlight_Flicker.mp3" id="15_4x2ji"]
+[ext_resource type="AudioStream" uid="uid://bgt1l2kqel6f1" path="res://assets/Sounds/Vent_crawl.mp3" id="16_bpsbn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un4r0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cwybk"]
+height = 1.2
+
+[sub_resource type="Animation" id="Animation_bwttx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_big34"]
+resource_name = "flicker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.7, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [5.0, 0.0, 5.0, 1.0, 5.0, 0.0, 5.0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Flashlight_Sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.14,
+"start_offset": 0.0,
+"stream": ExtResource("15_4x2ji")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gt8gs"]
+_data = {
+"RESET": SubResource("Animation_bwttx"),
+"flicker": SubResource("Animation_big34")
+}
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-5.38896e-08, 0, -1.23285, 0, 1.23285, 0, 1.23285, 0, -5.38896e-08, 1.164, 0.05, -1.216)
+script = ExtResource("1_njwdw")
+player_sounds_bank = Array[AudioStreamMP3]([ExtResource("2_87lfq"), ExtResource("3_up47l"), ExtResource("4_l7hj6"), ExtResource("5_1sjyi"), ExtResource("6_8tlay"), ExtResource("7_rdfpl")])
+
+[node name="FootSteps" type="Node3D" parent="." node_paths=PackedStringArray("ground_pos")]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 6.04338e-09, 0)
+script = ExtResource("8_yy1fj")
+footstep_sounds = Array[AudioStreamMP3]([ExtResource("9_2igav"), ExtResource("10_d3k8f"), ExtResource("11_p7ivx"), ExtResource("12_c2dbe"), ExtResource("13_wif7w"), ExtResource("14_08ky5")])
+ground_pos = NodePath("../GroundPosition")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_un4r0")
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630721, 0)
+shape = SubResource("CapsuleShape3D_cwybk")
+disabled = true
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Eyes" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
+current = true
+
+[node name="RayCast_Interact" type="RayCast3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(1.23285, 8.14779e-08, -5.38896e-08, -5.38896e-08, -8.14779e-08, -1.23285, -5.38896e-08, 1.864, -5.38896e-08, 0, 0, 0)
+collision_mask = 2
+
+[node name="RayCast_FOV" type="RayCast3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(1.23285, 1.48399e-07, -5.38896e-08, -5.38896e-08, -1.48399e-07, -1.23285, -5.38896e-08, 3.39498, -5.38896e-08, 0, 0, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Crosshair" parent="Head/Eyes/Camera3D" instance=ExtResource("11_hfppl")]
+mouse_filter = 1
+
+[node name="Objective_UI" parent="Head/Eyes/Camera3D" instance=ExtResource("12_1b2uu")]
+mouse_filter = 1
+
+[node name="PauseMenu" parent="Head/Eyes/Camera3D" instance=ExtResource("13_3kmrg")]
+
+[node name="Hand" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+visible = false
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Hand"]
+transform = Transform3D(1, 0, 1.75199e-14, 0, 1, 0, -1.75199e-14, 0, 1, 0, 1.788, -0.110008)
+light_energy = 5.0
+light_indirect_energy = 3.0
+light_volumetric_fog_energy = 0.2
+light_projector = ExtResource("14_0nx16")
+shadow_enabled = true
+spot_range = 11.6323
+spot_angle = 30.1752
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Hand/Flashlight"]
+libraries = {
+"": SubResource("AnimationLibrary_gt8gs")
+}
+
+[node name="Flashlight_Sound" type="AudioStreamPlayer" parent="Head/Hand"]
+
+[node name="NaturalLight" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00940013, 0)
+light_color = Color(0.215686, 0.215686, 0.215686, 1)
+light_volumetric_fog_energy = 1.378
+spot_range = 1.69511
+spot_angle = 50.625
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="RayCast_Floor" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 0.155, 0, 3.55271e-15, 0, 1, 0, 0.0637048, 0)
+
+[node name="GroundPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0.067335, 0)
+
+[node name="Vent_Crawl" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.811129, 0, 0, 0, 0.811129, 0, 0, 0, 0.811129, 0, 3.94736, 0)
+stream = ExtResource("16_bpsbn")
+max_db = 0.0

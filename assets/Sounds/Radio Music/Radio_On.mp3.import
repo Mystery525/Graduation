@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfhsgimsls5kb"
+path="res://.godot/imported/Radio_On.mp3-969d94fd7858049ed74d3b3ba1684094.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Radio Music/Radio_On.mp3"
+dest_files=["res://.godot/imported/Radio_On.mp3-969d94fd7858049ed74d3b3ba1684094.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

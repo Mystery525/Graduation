@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://mfadngfgj851"
+path.s3tc="res://.godot/imported/hromada_hlina_01_30k_NormalsMap.jpg-0cfd51d8237a7e9ffa94228aef6a498d.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Scenes/textures/hromada_hlina_01_30k_NormalsMap.jpg"
+dest_files=["res://.godot/imported/hromada_hlina_01_30k_NormalsMap.jpg-0cfd51d8237a7e9ffa94228aef6a498d.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Scenes/textures/hromada_hlina_01_30k_NormalsMap.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

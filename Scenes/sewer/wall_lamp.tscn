@@ -1,0 +1,209 @@
+[gd_scene load_steps=12 format=3 uid="uid://chpxa60wwsrsl"]
+
+[ext_resource type="ArrayMesh" uid="uid://bkifq4gwg40cp" path="res://Scenes/sewer/lamp_textures/Wall_light_3.obj" id="1_5dofa"]
+[ext_resource type="Script" path="res://Scripts/wall_lamp.gd" id="1_xwfqm"]
+[ext_resource type="AudioStream" uid="uid://gq3aumejgksf" path="res://assets/Sounds/LightAlarm.mp3" id="2_wtmh6"]
+[ext_resource type="AudioStream" uid="uid://b2f37ovo1j5nb" path="res://assets/Sounds/AlarmSpider.mp3" id="4_uxqct"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klo2d"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.988235, 1, 0.756863, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1uxh"]
+albedo_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+metallic = 0.82
+metallic_specular = 0.26
+roughness = 0.41
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rn3ao"]
+albedo_color = Color(0.286275, 0.286275, 0.286275, 1)
+metallic = 1.0
+roughness = 0.41
+
+[sub_resource type="Animation" id="Animation_swahf"]
+resource_name = "Green_Light"
+length = 1.8
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_wtmh6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallLight3/OmniLight3D:light_energy")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 0.0, 8.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLight3/OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WallLight3/OmniLight3D:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.988235, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v6j64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallLight3/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.928]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallLight3/OmniLight3D:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.756863, 0.0117647, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLight3/OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sl8xo"]
+resource_name = "Red_Light"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.569472,
+"start_offset": 0.0,
+"stream": ExtResource("4_uxqct")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallLight3/OmniLight3D:light_energy")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLight3/OmniLight3D:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.87451, 0.0156863, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WallLight3/OmniLight3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t823c"]
+_data = {
+"Green_Light": SubResource("Animation_swahf"),
+"RESET": SubResource("Animation_v6j64"),
+"Red_Light": SubResource("Animation_sl8xo")
+}
+
+[node name="Wall_Lamp" type="Node3D"]
+transform = Transform3D(0.0129054, 0, 0, 0, 0.0129054, 0, 0, 0, 0.0129054, 0, 0, 0)
+script = ExtResource("1_xwfqm")
+
+[node name="WallLight3" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5dofa")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_klo2d")
+surface_material_override/1 = SubResource("StandardMaterial3D_w1uxh")
+surface_material_override/2 = SubResource("StandardMaterial3D_rn3ao")
+surface_material_override/3 = SubResource("StandardMaterial3D_w1uxh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WallLight3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.8178, 3.53762)
+visible = false
+light_color = Color(0.756863, 0.0117647, 0, 1)
+light_energy = 7.928
+light_size = 0.087
+light_specular = 7.555
+light_bake_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t823c")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(77.4869, 0, 0, 0, 77.4869, 0, 0, 0, 77.4869, 0, 52.7757, 23.0081)
+max_db = -3.0

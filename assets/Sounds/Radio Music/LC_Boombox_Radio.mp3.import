@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxgvm4f5gbja3"
+path="res://.godot/imported/LC_Boombox_Radio.mp3-57029b7976fd22f82c683aa858b8f5bc.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Radio Music/LC_Boombox_Radio.mp3"
+dest_files=["res://.godot/imported/LC_Boombox_Radio.mp3-57029b7976fd22f82c683aa858b8f5bc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

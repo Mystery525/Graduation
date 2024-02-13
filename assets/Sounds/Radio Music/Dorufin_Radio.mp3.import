@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dc0qc1cw58t8l"
+path="res://.godot/imported/Dorufin_Radio.mp3-a44ddfef17e38b801d97b8ff26963c7b.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Radio Music/Dorufin_Radio.mp3"
+dest_files=["res://.godot/imported/Dorufin_Radio.mp3-a44ddfef17e38b801d97b8ff26963c7b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

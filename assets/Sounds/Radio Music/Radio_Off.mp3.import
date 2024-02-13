@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hm6rlfluirko"
+path="res://.godot/imported/Radio_Off.mp3-242e0c38fd40bd10c84644248fe96b99.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Radio Music/Radio_Off.mp3"
+dest_files=["res://.godot/imported/Radio_Off.mp3-242e0c38fd40bd10c84644248fe96b99.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

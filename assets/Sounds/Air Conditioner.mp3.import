@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0drldtqoukgu"
+path="res://.godot/imported/Air Conditioner.mp3-ad8f10f85b7498dee20bf8400dddfa16.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Air Conditioner.mp3"
+dest_files=["res://.godot/imported/Air Conditioner.mp3-ad8f10f85b7498dee20bf8400dddfa16.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

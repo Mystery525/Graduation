@@ -1,0 +1,215 @@
+[gd_scene load_steps=13 format=3 uid="uid://bw5jvo03goull"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_xpuyb"]
+[ext_resource type="Shader" path="res://Scenes/pause_menu.gdshader" id="2_3njae"]
+[ext_resource type="FontFile" uid="uid://n88h2ek1rc3o" path="res://assets/textures/GlacialIndifference-Regular.otf" id="3_pg4cl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_no2d6"]
+shader = ExtResource("2_3njae")
+shader_parameter/amount = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysoiq"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 10.0
+expand_margin_top = 3.0
+expand_margin_right = 10.0
+expand_margin_bottom = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 2.205)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ga7x"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 15.0
+expand_margin_top = 3.0
+expand_margin_right = 15.0
+expand_margin_bottom = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 2.205)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkyia"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+border_width_top = 8
+border_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 15.0
+expand_margin_top = 3.0
+expand_margin_right = 15.0
+expand_margin_bottom = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 2.205)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2u11b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxfx4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hc2db"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3kfbu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jade1"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xpuyb")
+bus_name = "Master"
+
+[node name="PauseScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+material = SubResource("ShaderMaterial_no2d6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Pause Buttons" type="VBoxContainer" parent="PauseScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -144.0
+offset_right = 112.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Resume" type="Button" parent="PauseScreen/Pause Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxFlat_ysoiq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ga7x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hkyia")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2u11b")
+text = "Resume"
+
+[node name="Options" type="Button" parent="PauseScreen/Pause Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxFlat_ysoiq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ga7x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hkyia")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vxfx4")
+text = "Options"
+
+[node name="Quit" type="Button" parent="PauseScreen/Pause Buttons"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxFlat_ysoiq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ga7x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hkyia")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hc2db")
+text = "Quit"
+
+[node name="Options Buttons" type="VBoxContainer" parent="PauseScreen"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -207.5
+offset_right = 125.5
+offset_bottom = 207.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PauseScreen/Options Buttons"]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+self_modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(127, 102.5)
+scale = Vector2(281, 220)
+mesh = SubResource("QuadMesh_3kfbu")
+
+[node name="master" type="Label" parent="PauseScreen/Options Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 33
+text = "Master Volume:"
+horizontal_alignment = 1
+
+[node name="Master" type="HSlider" parent="PauseScreen/Options Buttons"]
+layout_mode = 2
+max_value = 2.0
+step = 0.001
+
+[node name="Mouse Sens" type="Label" parent="PauseScreen/Options Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 33
+text = "Mouse Sensitivity:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mouse" type="HSlider" parent="PauseScreen/Options Buttons"]
+layout_mode = 2
+min_value = 0.01
+max_value = 0.4
+step = 0.01
+value = 0.1
+
+[node name="HSeparator" type="HSeparator" parent="PauseScreen/Options Buttons"]
+self_modulate = Color(1, 1, 1, 0.0431373)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Back" type="Button" parent="PauseScreen/Options Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_pg4cl")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxFlat_ysoiq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ga7x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hkyia")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jade1")
+text = "Back"
+
+[connection signal="pressed" from="PauseScreen/Pause Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseScreen/Pause Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PauseScreen/Pause Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseScreen/Options Buttons/Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,200 @@
+[gd_scene load_steps=15 format=3 uid="uid://d282ovn2nmlhe"]
+
+[ext_resource type="Script" path="res://Scripts/shutter_door.gd" id="1_3n8n4"]
+[ext_resource type="Texture2D" uid="uid://dg6k4wofvraoa" path="res://Scenes/sewer/MetalDoor_MAT.jpg" id="1_sawtk"]
+[ext_resource type="Texture2D" uid="uid://cpey7iorr01u1" path="res://Scenes/textures/Hazard_MAT.jpg" id="2_oekw8"]
+[ext_resource type="AudioStream" uid="uid://ow8jhqnj66u0" path="res://assets/Sounds/gtfo_door_close.mp3" id="3_4ykwx"]
+[ext_resource type="AudioStream" uid="uid://msfaidtgtmmi" path="res://assets/Sounds/gtfo_door_open.mp3" id="3_sen1x"]
+[ext_resource type="AudioStream" uid="uid://dxcgypqg1n53r" path="res://assets/Sounds/gtfo_door_openLong.mp3" id="6_pvcqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lh1nr"]
+albedo_color = Color(0.435294, 0.435294, 0.435294, 1)
+albedo_texture = ExtResource("1_sawtk")
+metallic = 0.85
+roughness = 0.22
+uv1_scale = Vector3(0.375, 0.375, 0.375)
+uv1_offset = Vector3(0.485, 0, 0)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymdl3"]
+albedo_color = Color(0.682353, 0.682353, 0.682353, 1)
+albedo_texture = ExtResource("2_oekw8")
+metallic = 0.83
+roughness = 0.89
+uv1_triplanar = true
+
+[sub_resource type="Animation" id="Animation_ilnri"]
+resource_name = "door_open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.85, 0), Vector3(0, 3.1, 0), Vector3(0, 3, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_sen1x")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_bx8il"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.85, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1khx2"]
+resource_name = "door_closed"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 5, 0), Vector3(0, 1.9, 0), Vector3(0, 1.85, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_4ykwx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_a0v0q"]
+resource_name = "door_open_spider"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.5, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.85, 0), Vector3(0, 3.1, 0), Vector3(0, 3, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.07,
+"start_offset": 0.0,
+"stream": ExtResource("6_pvcqw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_xav57"]
+resource_name = "door_open_long"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 10.8, 11.9, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.85, 0), Vector3(0, 2.8, 0), Vector3(0, 2.5, 0), Vector3(0, 2.5, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_sen1x")
+}, {
+"end_offset": 0.96,
+"start_offset": 0.0,
+"stream": ExtResource("3_sen1x")
+}],
+"times": PackedFloat32Array(0, 10.8)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ptxi"]
+_data = {
+"RESET": SubResource("Animation_bx8il"),
+"door_closed": SubResource("Animation_1khx2"),
+"door_open": SubResource("Animation_ilnri"),
+"door_open_long": SubResource("Animation_xav57"),
+"door_open_spider": SubResource("Animation_a0v0q")
+}
+
+[node name="ShutterDoor" type="Node3D"]
+script = ExtResource("1_3n8n4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
+use_collision = true
+size = Vector3(2.47214, 3.67485, 0.15918)
+material = SubResource("StandardMaterial3D_lh1nr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.707, 0)
+size = Vector3(2.49072, 0.260372, 0.186035)
+material = SubResource("StandardMaterial3D_ymdl3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62176, 0)
+unit_size = 12.0
+max_db = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ptxi")
+}

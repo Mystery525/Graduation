@@ -1,0 +1,144 @@
+[gd_scene load_steps=16 format=3 uid="uid://cojbs33k41gxn"]
+
+[ext_resource type="Texture2D" uid="uid://yd4731mvi27y" path="res://assets/textures/brick_MAT.jpg" id="1_8uaos"]
+[ext_resource type="Shader" path="res://Scenes/sewer_water.gdshader" id="2_tyfmt"]
+[ext_resource type="Texture2D" uid="uid://b0yq7md7qk0cp" path="res://assets/textures/ConcreteMossy2_MAT.jpg" id="3_batv8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hb7r5"]
+flip_faces = true
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2asg"]
+albedo_texture = ExtResource("1_8uaos")
+metallic = 1.0
+metallic_specular = 0.03
+roughness = 0.43
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_c1hyu"]
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j07tb"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ydugo"]
+seamless = true
+as_normal_map = true
+bump_strength = 6.0
+noise = SubResource("FastNoiseLite_j07tb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tnhqp"]
+noise_type = 3
+seed = 10
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jjjrx"]
+seamless = true
+as_normal_map = true
+bump_strength = 6.0
+noise = SubResource("FastNoiseLite_tnhqp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_676uw"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_swud0"]
+seamless = true
+noise = SubResource("FastNoiseLite_676uw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g67a3"]
+render_priority = 0
+shader = ExtResource("2_tyfmt")
+shader_parameter/albedo = Color(0, 0.12549, 0.0901961, 1)
+shader_parameter/metallic = 0.393
+shader_parameter/roughness = 0.105
+shader_parameter/opacity = 0.907
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = Color(0, 0.0784314, 0, 1)
+shader_parameter/color_shallow = null
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0.141176, 0.0901961, 1)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ydugo")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_jjjrx")
+shader_parameter/wave = SubResource("NoiseTexture2D_swud0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0cbw0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02nj2"]
+albedo_texture = ExtResource("3_batv8")
+metallic = 1.0
+metallic_specular = 0.41
+roughness = 0.81
+uv1_scale = Vector3(0.88, 0.88, 0.88)
+uv1_offset = Vector3(0, 0, -0.3)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="SewerStraight" type="Node3D"]
+transform = Transform3D(2.7554, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Rim" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.7312e-07, -3.96052, 0, 3.96052, -1.7312e-07, 0, 0, 0, 3.96052, 0, 2.07869, 0)
+mesh = SubResource("CylinderMesh_hb7r5")
+surface_material_override/0 = SubResource("StandardMaterial3D_c2asg")
+
+[node name="WaterShader" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.90777, 0, 0, 0, 1, 0, 0, 0, 1.78345, -0.012263, 0.57671, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_c1hyu")
+surface_material_override/0 = SubResource("ShaderMaterial_g67a3")
+
+[node name="Pavement" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.88323, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.718747, 1.41504)
+mesh = SubResource("QuadMesh_0cbw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_02nj2")
+
+[node name="Pavement2" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.88323, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.718747, -1.42675)
+mesh = SubResource("QuadMesh_0cbw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_02nj2")
+
+[node name="Pavement3" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.88323, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.55306, 0)
+mesh = SubResource("QuadMesh_0cbw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_02nj2")
+
+[node name="Pavement4" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.88323, 0, 0, 0, -0.174088, 0.808661, 0, -0.478512, -0.294201, 0, 0.630334, 0.698321)
+mesh = SubResource("QuadMesh_0cbw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_02nj2")
+
+[node name="Pavement5" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.88323, 0, 0, 0, 0.177441, 0.806576, 0, -0.477278, 0.299867, 0, 0.630334, -0.703546)
+mesh = SubResource("QuadMesh_0cbw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_02nj2")
+
+[node name="Floor" type="CSGBox3D" parent="." groups=["Wet"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00839996, 0.564255, -0.013813)
+layers = 0
+use_collision = true
+size = Vector3(7.99171, 0.164581, 3.20592)
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00839996, 2.09832, -1.69746)
+layers = 0
+use_collision = true
+size = Vector3(7.99171, 0.164581, 3.02879)
+
+[node name="Wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00839996, 2.09832, 1.59539)
+layers = 0
+use_collision = true
+size = Vector3(7.99171, 0.164581, 3.02879)

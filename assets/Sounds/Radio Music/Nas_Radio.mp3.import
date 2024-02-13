@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3cgowvywtf5x"
+path="res://.godot/imported/Nas_Radio.mp3-fe5b98758c425b8e41d7a27de61676e5.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Radio Music/Nas_Radio.mp3"
+dest_files=["res://.godot/imported/Nas_Radio.mp3-fe5b98758c425b8e41d7a27de61676e5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

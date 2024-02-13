@@ -1,0 +1,191 @@
+[gd_scene load_steps=16 format=3 uid="uid://ckd372dgpvsij"]
+
+[ext_resource type="Texture2D" uid="uid://d0j4myb7bl3h4" path="res://Scenes/sewer/MetalWall_MAT.jpg" id="1_dwfx6"]
+[ext_resource type="AudioStream" uid="uid://2h6y4p3hlk10" path="res://assets/Sounds/lever.mp3" id="2_4tdva"]
+[ext_resource type="AudioStream" uid="uid://mnvpe23nijev" path="res://assets/Sounds/WaterDrainAlarm.mp3" id="3_5ne6a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w2swx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yosw2"]
+albedo_color = Color(0.921569, 1, 0.921569, 1)
+albedo_texture = ExtResource("1_dwfx6")
+metallic = 0.74
+roughness = 0.8
+uv1_scale = Vector3(1.03, 1.03, 1.03)
+uv1_offset = Vector3(0, 0.495, 0)
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ow2ph"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_imyl5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv4u8"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+metallic = 0.99
+metallic_specular = 0.29
+roughness = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_daavh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp7qg"]
+albedo_color = Color(1, 0.266667, 0.266667, 1)
+metallic = 0.56
+metallic_specular = 0.24
+roughness = 0.37
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wevc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv3lp"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.5
+
+[sub_resource type="Animation" id="Animation_qeoek"]
+resource_name = "Lever_Pull"
+length = 4.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lever/AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_4tdva")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_5ne6a")
+}],
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lever/MeshInstance3D2:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 0, 0), Vector3(2.23196, 0, 0), Vector3(2.04064, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lever/MeshInstance3D2:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00497389, 1.38629, 0.309121), Vector3(0.00497389, 1.17651, 0.361897), Vector3(0.00497389, 0.966728, 0.309121), Vector3(0.00497389, 0.985373, 0.340125)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lever/OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.73, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_g3skp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lever/MeshInstance3D2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.523599, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lever/MeshInstance3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00497389, 1.34028, 0.309121)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lever/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2wcc"]
+_data = {
+"Lever_Pull": SubResource("Animation_qeoek"),
+"RESET": SubResource("Animation_g3skp")
+}
+
+[node name="Lever" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.72161, 0, 0, 0, 1.90144, 0, 0, 0, 0.372297, 0, 0.967937, 0)
+mesh = SubResource("BoxMesh_w2swx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_yosw2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" groups=["Lever"]]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_ow2ph")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.199734, 0, 0, 0, 0.422439, -0.104025, 0, 0.243896, 0.180176, 0.00497389, 1.34028, 0.309121)
+mesh = SubResource("CylinderMesh_imyl5")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_yv4u8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(1.61866, 0, 0, 0, 0.81189, 1.19209e-07, 0, 1.78814e-07, 1.71751, 0, 1.173, 0.0016017)
+mesh = SubResource("SphereMesh_daavh")
+surface_material_override/0 = SubResource("StandardMaterial3D_jp7qg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.136509, 0, 0, 0, -4.37114e-08, -0.585243, 0, 1, -2.55818e-08, 0.0120046, 1.01507, 0.18821)
+mesh = SubResource("PlaneMesh_wevc6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_cv3lp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_s2wcc")
+}
+autoplay = "RESET"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07724, 0.207958)
+max_db = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01146, 3.9674)
+light_color = Color(0.992157, 0, 0.14902, 1)
+light_energy = 0.0

@@ -1,0 +1,25 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://s3cs6o8do40p"]
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_anivx"]
+resource_name = "HighPassFilter"
+resonance = 1.0
+db = 1
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_bub5v"]
+resource_name = "Distortion"
+mode = 1
+pre_gain = 5.71
+drive = 0.37
+post_gain = 1.24
+
+[resource]
+bus/1/name = &"Radio"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectHighPassFilter_anivx")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectDistortion_bub5v")
+bus/1/effect/1/enabled = true
