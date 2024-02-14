@@ -95,4 +95,9 @@ pause={
 
 [rendering]
 
+global_illumination/gi/use_half_resolution=true
+environment/ssao/blur_passes=1
+environment/ssil/blur_passes=1
+global_illumination/sdfgi/frames_to_converge=0
+global_illumination/sdfgi/frames_to_update_lights=4
 anti_aliasing/quality/msaa_3d=1

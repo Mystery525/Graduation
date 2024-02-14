@@ -2,10 +2,8 @@ extends Node3D
 
 @onready var player = $"../Player"
 @onready var player_camera = $"../Player/Head/Eyes/Camera3D"
-@onready var anim_player = $AnimationPlayer
 @onready var event_triggers = $"../EventTriggers"
 @onready var intro_cutscene : bool
-
 @onready var objective = $"../Player/Head/Eyes/Camera3D/Objective_UI/CanvasLayer/VBoxContainer/Label"
 @onready var obj_anim_player = $"../Player/Head/Eyes/Camera3D/Objective_UI/CanvasLayer/VBoxContainer/AnimationPlayer"
 @onready var obj_ui_node = $"../Player/Head/Eyes/Camera3D/Objective_UI"
@@ -14,15 +12,17 @@ extends Node3D
 func _ready():
 	if get_tree().current_scene.name == "Sewer":
 		intro_cutscene = false
+		ObjTextFade("Tip: Press 'C' to crouch",6.0)
 	else:
+		
 		intro_cutscene = true
 
 func CutscenePlay(Cutscene):
 	$"../Player/Head/Eyes/Camera3D/Crosshair".hide()
 	player.cutscene_active = true
 	player_camera.current = false
-	anim_player.play(Cutscene)
-	await anim_player.animation_finished
+	$AnimationPlayer.play(Cutscene)
+	await $AnimationPlayer.animation_finished
 	player_camera.current = true
 	player.cutscene_active = false
 	$"../Player/Head/Eyes/Camera3D/Crosshair".show()
@@ -35,7 +35,7 @@ func _process(_delta):
 		intro_cutscene = false
 		await get_tree().create_timer(15.0,false).timeout
 		$Cutscene1/MeshInstance3D.queue_free()
-		await anim_player.animation_finished
+		await $AnimationPlayer.animation_finished
 		pause_menu.can_pause = true
 		ObjTextFade("To Do: Search for dryer.\n Explore.",4.0)
 		await get_tree().create_timer(8.0,false).timeout

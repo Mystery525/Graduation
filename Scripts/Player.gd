@@ -163,20 +163,19 @@ func _physics_process(delta):
 			crouching_collision_shape.disabled = true
 			head.position.y = lerp(head.position.y,1.8,delta*lerp_speed)
 			
-			if Input.is_action_pressed("forward"):
+			if Input.is_action_pressed("forward") or Input.is_action_pressed("backward") or Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 				#Walking
 				current_speed = lerp(current_speed,walking_speed,delta*lerp_speed)
 				walking = true
 				sprinting = false
 				crouching = false
 				if can_sprint == true:
-					if Input.is_action_pressed("sprint"):
+					if Input.is_action_pressed("sprint") and !Input.is_action_pressed("backward"):
 						#Sprinting
 						current_speed = lerp(current_speed,sprinting_speed,delta*lerp_speed)
 						walking = false
 						sprinting = true
 						crouching = false
-				
 		#Handle Head bob
 		if sprinting:
 			head_bopping_current_intensity = head_bopping_sprinting_intensity

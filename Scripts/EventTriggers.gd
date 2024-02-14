@@ -1,25 +1,20 @@
 extends Node3D
 
-@onready var lights = $"../House/Lights"
 @onready var LightsOut_Event = false
 @export var Music_Controller : Array[AudioStreamMP3]
 @onready var no_music = true
 @onready var LightsOut_Music = false
 @onready var event_triggers = $"."
-@onready var flashlight_static = $"../House/Flashlight_Static"
 @onready var world_environment = $"../WorldEnvironment"
-@onready var door_trigger = $door_trigger
 @onready var ray_cast_fov = $"../Player/Head/Eyes/Camera3D/RayCast_FOV"
 @onready var check_collision = false
 @onready var player = $"../Player"
-@onready var obj_marking = $"../House/Obj_Marking"
+@onready var obj_marking = get_node_or_null("../House/Obj_Marking")
 @onready var cutscene = $"../Cutscenes"
 @onready var SpiderMove = false
 @onready var CaveSpiderMove = false
 @onready var MineCartMove = false
-
-func _ready():
-	cutscene.ObjTextFade("Tip: Press 'C' to crouch",5.0)
+@onready var ResetCaveSpiderMove = false
 
 func PlayMusic():
 	var audio_player = $Music_Player
@@ -40,7 +35,7 @@ func LightsOut():
 		no_music = false
 		$lights_off_sn.play()
 		obj_marking.get_node("DryerObj").queue_free()
-		lights.queue_free()
+		$"../House/Lights".queue_free()
 		PlayMusic()
 		$"../House/Hallway/Flashlight/Lp/StaticBody3D".add_to_group("flashlight")
 		$"../House/Hallway/Flashlight/Lp/StaticBody3D".collision_layer = 2
@@ -52,11 +47,11 @@ func LightsOut():
 func Flashlight_Intro():
 	check_collision = true
 	$flashlight_sn.play()
-	flashlight_static.show()
+	$"../House/Flashlight_Static".show()
 	$"../House/Hallway/Hall_Stop".collision_layer = 1
 
 func Flashlight_Grab():
-	flashlight_static.queue_free()
+	$"../House/Flashlight_Static".queue_free()
 	$"../House/Hallway/Flashlight".queue_free()
 	$"../House/Loop_SFX/AC".queue_free()
 	$tv_trigger/CollisionShape3D.disabled = false
@@ -163,7 +158,7 @@ func _process(_delta):
 			if fov_collider.is_in_group("door_trigger"):
 				$"../House/Hallway/Door_Close_event/AnimationPlayer".play("door_close")
 				check_collision = false
-				door_trigger.queue_free()
+				$door_trigger.queue_free()
 				await get_tree().create_timer(2.0,false).timeout
 				if obj_marking.has_node("FlashlightObj"): obj_marking.get_node_or_null("FlashlightObj").show()
 
@@ -172,11 +167,15 @@ func _physics_process(delta):
 	if SpiderMove == true:
 		$"../Path3D/PathFollow3D".progress += IntroSpiderSpeed * delta
 		
-	const CaveSpiderSpeed := 5.4
+	const CaveSpiderSpeed := 6.1
 	if CaveSpiderMove == true:
 		$"../Path3D2/PathFollow3D".progress += CaveSpiderSpeed * delta
 		
-	const MineCartSpeed := 5.7
+	const ResetCaveSpiderSpeed := 5.0
+	if ResetCaveSpiderMove == true:
+		$"../Path3D3/PathFollow3D".progress += ResetCaveSpiderSpeed * delta
+		
+	const MineCartSpeed := 5.4
 	if MineCartMove == true:
 		$"../Chase/Path3D/PathFollow3D".progress += MineCartSpeed * delta
 		if $"../Chase/Path3D/PathFollow3D".progress_ratio >= 1:
@@ -184,7 +183,7 @@ func _physics_process(delta):
 			$"../Chase/Path3D".queue_free()
 
 func _on_area_3d_body_entered(_body):
-	Transit.change_scene_to_file("res://Scenes/main_menu.tscn",1.5,0)
+	Transit.change_scene_to_file("res://Scenes/sewer.tscn",1.5,0)
 
 func _on_first_door_close_body_entered(_body):
 	$"../DrainRoom/ShutterDoor".PlayClosed()
@@ -227,6 +226,7 @@ func _on_third_door_close_body_entered(_body):
 	LightsOut_Music = true
 	no_music = false
 	PlayMusic()
+	cutscene.ObjTextFade("Tip: Press 'Shift' to run..",4.0)
 	await get_tree().create_timer(4.0,false).timeout
 	$"../Maze/Wall_Lamp4".PlayGreen()
 	await get_tree().create_timer(2.0,false).timeout
@@ -282,25 +282,56 @@ func _on_wood_break_body_entered(_body):
 	$"../Path3D2/PathFollow3D/RootNode/SpiderWalk".play()
 	$"../Chase/Mines/Architect/RailRoad".play()
 
-
-
-
 func _on_mine_cart_start_body_entered(_body):
 	$"../Chase/Mines/Architect/MineCartStart".queue_free()
 	$"../Chase/Path3D/PathFollow3D/Minecart/AnimationPlayer".play("Alarm")
 	MineCartMove = true
-	#$"../Chase2/Wall_Lamp8".PlayRed()
-
+	$"../Chase2/Wall_Lamp".PlayRed()
 
 func _on_chase_door_close_body_entered(_body):
-	$"../Chase2/ChaseDoorClose".queue_free()
-	$"../Chase2/Wall_Lamp9".PlayRed()
+	$ChaseDoorClose.queue_free()
+	CaveSpiderMove = false
+	$"../Path3D2".queue_free()
+	$"../Path3D3/PathFollow3D/RootNode".show()
+	$"../Path3D3/PathFollow3D/RootNode/AnimationPlayer".play("Spider_Run")
+	$"../Path3D3/PathFollow3D/RootNode/SpiderWalk".play()
+	ResetCaveSpiderMove = true
+	$"../Chase2/Wall_Lamp2".PlayRed()
+	$"../Chase2/ShutterDoorOpen".PlayClosed()
 	$"../Chase2/ShutterDoor".PlayOpen()
-	$"../Chase2/ShutterDoor2".PlayClosed()
-
 
 func _on_chase_door_close_2_body_entered(_body):
+	$ChaseDoorClose2.queue_free()
 	$"../Chase".queue_free()
-	$"../Chase2/ChaseDoorClose2".queue_free()
-	$"../Chase2/ShutterDoor3".PlayClosed()
-	$"../Chase2/ShutterDoor4".PlayOpen()
+	$"../Chase2/Wall_Lamp".queue_free()
+	$"../Chase2/ShutterDoor2".PlayOpen()
+	$"../Chase2/ShutterDoorOpen2".PlayClosed()
+
+
+func _on_chase_door_close_3_body_entered(_body):
+	$ChaseDoorClose3.queue_free()
+	$"../Ending/IntroGym/ShutterDoorOpen4".PlayLongClosed()
+	await get_tree().create_timer(10.0,false).timeout
+	$"../Chase2".queue_free()
+	ResetCaveSpiderMove = false
+	$"../Path3D3".queue_free()
+	await get_tree().create_timer(6.0,false).timeout
+	$"../Ending/IntroGym/Wall_Lamp".PlayGreen()
+	await get_tree().create_timer(2.0,false).timeout
+	$"../Ending/IntroGym/ShutterDoor".PlayOpen()
+
+
+func _on_gym_door_close_body_entered(_body):
+	$GymDoorClose.queue_free()
+	$"../Ending/IntroGym/ShutterDoor".PlayClosed()
+	await get_tree().create_timer(2.0,false).timeout
+	$"../Ending/Gym/Light1".show()
+	$"../Ending/Gym/Light1/AudioStreamPlayer3D".play()
+	await get_tree().create_timer(1.0,false).timeout
+	$"../Ending/Gym/Light2".show()
+	$"../Ending/Gym/Light2/AudioStreamPlayer3D".play()
+	await get_tree().create_timer(1.0,false).timeout
+	$"../Ending/Gym/Light3".show()
+	$"../Ending/Gym/Light3/AudioStreamPlayer3D".play()
+	await get_tree().create_timer(3.0,false).timeout
+	cutscene.ObjTextFade("To Do: Get your Diploma.",5.0)

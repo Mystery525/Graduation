@@ -14,3 +14,6 @@ func PlayLongOpen():
 	
 func PlayOpenSpider():
 	anim_player.play("door_open_spider")
+
+func PlayLongClosed():
+	anim_player.play("door_closed_long")

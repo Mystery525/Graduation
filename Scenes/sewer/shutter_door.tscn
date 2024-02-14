@@ -23,37 +23,6 @@ metallic = 0.83
 roughness = 0.89
 uv1_triplanar = true
 
-[sub_resource type="Animation" id="Animation_ilnri"]
-resource_name = "door_open"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CSGBox3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.85, 0), Vector3(0, 3.1, 0), Vector3(0, 3, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_sen1x")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-
 [sub_resource type="Animation" id="Animation_bx8il"]
 length = 0.001
 tracks/0/type = "value"
@@ -100,9 +69,9 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
-[sub_resource type="Animation" id="Animation_a0v0q"]
-resource_name = "door_open_spider"
-length = 6.0
+[sub_resource type="Animation" id="Animation_ilnri"]
+resource_name = "door_open"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +79,7 @@ tracks/0/path = NodePath("CSGBox3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.4, 1.5, 5.9, 6),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.9, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 1.85, 0), Vector3(0, 3.1, 0), Vector3(0, 3, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
@@ -123,9 +92,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 1.07,
+"end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_pvcqw")
+"stream": ExtResource("3_sen1x")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -163,6 +132,37 @@ tracks/1/keys = {
 "stream": ExtResource("3_sen1x")
 }],
 "times": PackedFloat32Array(0, 10.8)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_a0v0q"]
+resource_name = "door_open_spider"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.5, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.85, 0), Vector3(0, 3.1, 0), Vector3(0, 3, 0), Vector3(0, 5.1, 0), Vector3(0, 5, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.07,
+"start_offset": 0.0,
+"stream": ExtResource("6_pvcqw")
+}],
+"times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
 
