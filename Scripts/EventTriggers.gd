@@ -212,9 +212,7 @@ func _on_vent_noise_body_entered(_body):
 	$VentNoise.queue_free()
 	player.FlashlightFlicker()
 	$"../ControlRoom/SpiderVent".play()
-	$"../Ending/Gym/Light1".hide()
-	$"../Ending/Gym/Light2".hide()
-	$"../Ending/Gym/Light3".hide()
+
 
 func _on_control_enter_body_entered(_body):
 	$ControlEnter.queue_free()
@@ -229,6 +227,9 @@ func _on_third_door_close_body_entered(_body):
 	$"../Maze/ShutterDoor5".PlayClosed()
 	$ThirdDoorClose.queue_free()
 	$"../Maze/Intro".queue_free()
+	$"../Ending/Gym/Light1".hide()
+	$"../Ending/Gym/Light2".hide()
+	$"../Ending/Gym/Light3".hide()
 	PlayMusic(0,-10,true)
 	player.can_sprint = true
 	if Transit.Death == false:
@@ -320,9 +321,8 @@ func _on_chase_door_close_3_body_entered(_body):
 	$"../Ending/IntroGym/ShutterDoorOpen4".PlayLongClosed()
 	await get_tree().create_timer(4.0,false).timeout
 	$"../Chase2/SpiderScream".play()
-	await get_tree().create_timer(6.0,false).timeout
 	$"../Path3D3/PathFollow3D/RootNode/SpiderWalk".stop()
-	await get_tree().create_timer(6.0,false).timeout
+	await get_tree().create_timer(16.0,false).timeout
 	$"../Ending/IntroGym/Wall_Lamp".PlayGreen()
 	await get_tree().create_timer(2.0,false).timeout
 	$"../Ending/IntroGym/ShutterDoor".PlayOpen()
@@ -367,8 +367,7 @@ func DiplomaGrab():
 	$"../Ending/Gym/Light3".queue_free()
 	$"../Ending/Path3D".queue_free()
 	player.PlayPlayerSound(player,10,-3)
-	await get_tree().create_timer(3.0,false).timeout
-	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
+	Transit.change_scene_to_file("res://Scenes/credits.tscn",3.0,0)
 
 
 func _on_spider_detect_1_body_entered(_body):
