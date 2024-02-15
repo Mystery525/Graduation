@@ -12,9 +12,12 @@ extends Node3D
 func _ready():
 	if get_tree().current_scene.name == "Sewer":
 		intro_cutscene = false
-		ObjTextFade("Tip: Press 'C' to crouch",6.0)
-	else:
+		load("res://Scripts/EventTriggers.gd")
+		if Transit.Death == false:
+			ObjTextFade("Tip: Press 'C' to crouch",6.0)
 		
+	elif get_tree().current_scene.name == "World":
+		load("res://Scripts/EventTriggers.gd")
 		intro_cutscene = true
 
 func CutscenePlay(Cutscene):

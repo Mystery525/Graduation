@@ -1,5 +1,8 @@
 extends Control
 
+@onready var SceneChoose = 0
+@onready var Death = false
+
 signal scene_changed
 
 const DEFAULT_DURATION := 0.2

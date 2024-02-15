@@ -1,0 +1,239 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi5850wawcj6h"]
+
+[ext_resource type="Script" path="res://Scripts/death_scene.gd" id="1_fed7n"]
+[ext_resource type="PackedScene" uid="uid://cnch0shotyo2p" path="res://Scenes/Spider.tscn" id="1_wvq8l"]
+[ext_resource type="PackedScene" uid="uid://d4gwppat7f3db" path="res://Scenes/sewer/MineScenes/mine_wood.tscn" id="2_j4f5l"]
+[ext_resource type="Texture2D" uid="uid://o66fnm0u8cr2" path="res://Scenes/textures/StoneWall_MAT.jpg" id="3_d8w12"]
+[ext_resource type="Texture2D" uid="uid://by8iipr87kbdu" path="res://Scenes/textures/StoneWall_NM.jpg" id="4_icn5b"]
+[ext_resource type="AudioStream" uid="uid://bihvjwccuxu6" path="res://assets/Sounds/DeathStinger.mp3" id="6_5lbjl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3peos"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxe14"]
+albedo_color = Color(0.780392, 1, 0.760784, 1)
+albedo_texture = ExtResource("3_d8w12")
+metallic = 0.72
+roughness = 0.33
+normal_enabled = true
+normal_texture = ExtResource("4_icn5b")
+uv1_scale = Vector3(0.335, 0.335, 0.335)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iaek"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="Animation" id="Animation_g0s3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.16792, 0.979034)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D6:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RootNode:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qafef"]
+resource_name = "jumpscare"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0229055, 0.342417, 0.981439),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.16792, 0.979034), Vector3(0, 0.77058, 1.66124), Vector3(0, 0.838205, 1.63174)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0229055, 0.291622, 0.595863, 0.7597, 0.973485),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.482444, 0, 0), Vector3(0.139626, 0.0349066, 0), Vector3(0.0872665, 0.0174533, 0), Vector3(0.10472, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D6:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RootNode:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.36,
+"start_offset": 0.0,
+"stream": ExtResource("6_5lbjl")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hy3s0"]
+_data = {
+"RESET": SubResource("Animation_g0s3t"),
+"jumpscare": SubResource("Animation_qafef")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_px38t"]
+flip_faces = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trt6o"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[node name="DeathScene" type="Node3D"]
+script = ExtResource("1_fed7n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16792, 0.979034)
+fov = 49.0983
+
+[node name="RootNode" parent="." instance=ExtResource("1_wvq8l")]
+transform = Transform3D(-1.81296, 4.74514e-09, -0.48578, -0.220804, 1.67182, 0.824051, 0.432699, 0.853121, -1.61485, -0.317281, 1.23811, -1.97324)
+
+[node name="MineWood" parent="." instance=ExtResource("2_j4f5l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.267912, 0, -0.623081)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.16, 0, 0, 0, 1, 0, 0, 0, 2.97524, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3peos")
+surface_material_override/0 = SubResource("StandardMaterial3D_hxe14")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.44168e-08, 1, 0, -2.16, -4.37114e-08, 0, 0, 0, 3.22829, -1.97499, 1.30663, -0.350324)
+mesh = SubResource("PlaneMesh_3peos")
+surface_material_override/0 = SubResource("StandardMaterial3D_hxe14")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.8325e-07, -1, 0, 2.16, 1.31134e-07, 0, 0, 0, 3.22829, 1.30062, 1.30663, -0.350324)
+mesh = SubResource("PlaneMesh_3peos")
+surface_material_override/0 = SubResource("StandardMaterial3D_hxe14")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.16, -8.74228e-08, 0, 1.88834e-07, -1, 0, 0, 0, 3.22829, -0.35641, 2.99083, -0.350324)
+mesh = SubResource("PlaneMesh_3peos")
+surface_material_override/0 = SubResource("StandardMaterial3D_hxe14")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.16, -8.74228e-08, 0, -8.25418e-15, 4.37114e-08, 3.22829, -1.88834e-07, 1, -1.41113e-07, -0.35641, 1.96948, -2.63072)
+mesh = SubResource("PlaneMesh_3peos")
+surface_material_override/0 = SubResource("StandardMaterial3D_5iaek")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hy3s0")
+}
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.961617, -0.274396, 0, 0.274396, 0.961617, 0, 0.742565, 1.90512)
+light_energy = 2.315
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 5.81795
+spot_angle = 28.497
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.57004, 0, 0, 0, 1.22083, 0, 0, 0, 2.24055, 0, 0.897816, 1.57981)
+visible = false
+mesh = SubResource("BoxMesh_px38t")
+surface_material_override/0 = SubResource("StandardMaterial3D_trt6o")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

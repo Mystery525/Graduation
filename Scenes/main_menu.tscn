@@ -1,6 +1,102 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkj4ig0lr51qh"]
+[gd_scene load_steps=17 format=3 uid="uid://bkj4ig0lr51qh"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_k24vl"]
+[ext_resource type="Texture2D" uid="uid://cevh74yec3k16" path="res://assets/textures/GraduationMenu.jpg" id="2_8n5q3"]
+[ext_resource type="FontFile" uid="uid://cqt0ec07e231j" path="res://assets/textures/ferrum.otf" id="3_0rhsg"]
+[ext_resource type="AudioStream" uid="uid://blio8oddbm3eu" path="res://assets/Sounds/Music/MenuTheme.mp3" id="4_jwofr"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_nfwn6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yjl2"]
+bg_color = Color(0, 0.129412, 0.176471, 1)
+border_width_left = 11
+border_width_bottom = 12
+border_color = Color(0, 0.0588235, 0.0862745, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_size = 7
+shadow_offset = Vector2(-9.605, 18.23)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wm6jw"]
+bg_color = Color(0, 0.211765, 0.282353, 1)
+border_width_left = 11
+border_width_bottom = 12
+border_color = Color(0, 0.0588235, 0.0862745, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_size = 7
+shadow_offset = Vector2(-9.605, 18.23)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugclq"]
+bg_color = Color(0, 0.0431373, 0.0666667, 1)
+border_width_left = 11
+border_width_bottom = 12
+border_color = Color(0, 0.141176, 0.192157, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
+shadow_size = 7
+shadow_offset = Vector2(-9.605, 18.23)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prj32"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fywxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iyml0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8k1i"]
+
+[sub_resource type="Curve" id="Curve_dqv32"]
+min_value = -145.23
+max_value = 231.76
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_vr0c5"]
+resource_name = "Music_Fade_Out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+
+[sub_resource type="Animation" id="Animation_466am"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_43w3n"]
+_data = {
+"Music_Fade_Out": SubResource("Animation_vr0c5"),
+"RESET": SubResource("Animation_466am")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +107,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k24vl")
 
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(821.459, 490.117)
+rotation = -3.14159
+scale = Vector2(1650.08, 984.734)
+mesh = SubResource("QuadMesh_nfwn6")
+texture = ExtResource("2_8n5q3")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 232.0
+offset_top = 41.0
+offset_right = 1069.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -9
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("3_0rhsg")
+theme_override_font_sizes/font_size = 200
+text = "Graduation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -18,26 +140,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -196.5
-offset_top = -118.0
-offset_right = 196.5
-offset_bottom = 118.0
+offset_left = -722.0
+offset_top = -132.0
+offset_right = -209.0
+offset_bottom = 356.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 45
 alignment = 1
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 92
+theme_override_styles/normal = SubResource("StyleBoxFlat_4yjl2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wm6jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ugclq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_prj32")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fywxo")
 text = "Play"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
+theme_override_styles/normal = SubResource("StyleBoxFlat_4yjl2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wm6jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ugclq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iyml0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f8k1i")
 text = "Quit"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jwofr")
+volume_db = -5.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(703, -31)
+amount = 5
+emission_shape = 3
+emission_rect_extents = Vector2(800, 1)
+gravity = Vector2(0, 2000)
+initial_velocity_max = 273.97
+angle_max = 227.7
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0.596078, 0.596078, 0.596078, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_dqv32")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_43w3n")
+}
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

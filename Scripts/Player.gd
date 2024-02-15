@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var ray_cast_3d = $RayCast3D
 @onready var eyes = $Head/Eyes
+@onready var player_camera = $Head/Eyes/Camera3D
 @onready var raycast_floor = $RayCast_Floor
 @onready var raycast_interact = $Head/Eyes/Camera3D/RayCast_Interact
 @onready var event_triggers = $"../EventTriggers"
@@ -54,7 +55,7 @@ var crouching_depth = -0.5
 var walking = false
 var sprinting = false
 var crouching = false
-var can_sprint = true
+var can_sprint = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -68,6 +69,15 @@ func _ready():
 		flashlight_equipped = true
 		flashlight_toggle = true
 		flashlight_strength = 8.0
+		#Load Heavy things
+		load("res://Scenes/sewer/wall_lamp.tscn")
+		load("res://Scenes/sewer/shutter_door.tscn")
+		load("res://Scenes/Spider.tscn")
+		if Transit.Death == true:
+			self.global_position = $"../DeathSpawn".global_position
+			$"../Intro".queue_free()
+			$"../DrainRoom".queue_free()
+			$"../ControlRoom".queue_free()
 
 
 func _input(event):
@@ -125,6 +135,8 @@ func _process(_delta):
 			elif group_check_interact.is_in_group("Lever"):
 				group_check_interact.collision_layer = 0
 				event_triggers.LeverPull()
+			elif group_check_interact.is_in_group("diploma"):
+				event_triggers.DiplomaGrab()
 	else:
 		$Head/Eyes/Camera3D/Crosshair/Sprite2D/AnimationPlayer.play("RESET")
 	#Flashlight

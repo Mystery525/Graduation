@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2s52fn2x588r"]
+
+[ext_resource type="FontFile" uid="uid://cqt0ec07e231j" path="res://assets/textures/ferrum.otf" id="1_maxs3"]
+[ext_resource type="Script" path="res://Scripts/death_menu.gd" id="1_r1dqj"]
+[ext_resource type="FontFile" uid="uid://n88h2ek1rc3o" path="res://assets/textures/GlacialIndifference-Regular.otf" id="2_3iuof"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0cv2p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1d723"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kang5"]
+
+[node name="DeathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r1dqj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(799, 458.5)
+scale = Vector2(1658, 953)
+mesh = SubResource("QuadMesh_0cv2p")
+
+[node name="YouDied" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.5
+offset_top = 307.0
+offset_right = 240.5
+offset_bottom = 458.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_maxs3")
+theme_override_font_sizes/font_size = 150
+text = "You Died."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 131.0
+offset_right = -2.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Retry" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3iuof")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1d723")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kang5")
+text = "Retry"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]

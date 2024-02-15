@@ -7,3 +7,6 @@ func PlayGreen():
 
 func PlayRed():
 	anim_player.play("Red_Light")
+	
+func Stop():
+	anim_player.play("RESET")

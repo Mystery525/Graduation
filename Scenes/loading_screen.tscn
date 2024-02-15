@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdf0d165w8jt"]
+
+[ext_resource type="Script" path="res://Scripts/loading_screen.gd" id="1_blim3"]
+[ext_resource type="FontFile" uid="uid://n88h2ek1rc3o" path="res://assets/textures/GlacialIndifference-Regular.otf" id="2_7mp8u"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vlgxo"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blim3")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(812, 449.5)
+scale = Vector2(1702, 957)
+mesh = SubResource("QuadMesh_vlgxo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7mp8u")
+theme_override_font_sizes/font_size = 100
+text = "Loading: "
+horizontal_alignment = 1
+vertical_alignment = 1
