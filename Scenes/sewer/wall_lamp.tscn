@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://chpxa60wwsrsl"]
+[gd_scene load_steps=14 format=3 uid="uid://chpxa60wwsrsl"]
 
 [ext_resource type="ArrayMesh" uid="uid://bkifq4gwg40cp" path="res://Scenes/sewer/lamp_textures/Wall_light_3.obj" id="1_5dofa"]
 [ext_resource type="Script" path="res://Scripts/wall_lamp.gd" id="1_xwfqm"]
@@ -70,6 +70,46 @@ tracks/3/path = NodePath("WallLight3/OmniLight3D:light_color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.988235, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8aikw"]
+resource_name = "Green_Light_Init"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallLight3/OmniLight3D:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 0.0, 8.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallLight3/OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLight3/OmniLight3D:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -171,11 +211,53 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_k1vv5"]
+resource_name = "Red_Light_init"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallLight3/OmniLight3D:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallLight3/OmniLight3D:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.87451, 0.0156863, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLight3/OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t823c"]
 _data = {
 "Green_Light": SubResource("Animation_swahf"),
+"Green_Light_Init": SubResource("Animation_8aikw"),
 "RESET": SubResource("Animation_v6j64"),
-"Red_Light": SubResource("Animation_sl8xo")
+"Red_Light": SubResource("Animation_sl8xo"),
+"Red_Light_Init": SubResource("Animation_k1vv5")
 }
 
 [node name="Wall_Lamp" type="Node3D"]
@@ -195,9 +277,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.8178, 3.53762)
 visible = false
 light_color = Color(0.756863, 0.0117647, 0, 1)
 light_energy = 7.928
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
 light_size = 0.087
 light_specular = 7.555
-light_bake_mode = 1
+light_bake_mode = 0
+omni_shadow_mode = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

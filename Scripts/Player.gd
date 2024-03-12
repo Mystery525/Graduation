@@ -68,16 +68,14 @@ func _ready():
 		$Head/Eyes/Camera3D/Crosshair.hide()
 		flashlight_equipped = true
 		flashlight_toggle = true
-		flashlight_strength = 8.0
-		#Load Heavy things
-		load("res://Scenes/sewer/wall_lamp.tscn")
-		load("res://Scenes/sewer/shutter_door.tscn")
-		load("res://Scenes/Spider.tscn")
+		flashlight_strength = 10.0
 		if Transit.Death == true:
 			self.global_position = $"../DeathSpawn".global_position
 			$"../Intro".queue_free()
 			$"../DrainRoom".queue_free()
 			$"../ControlRoom".queue_free()
+	else:
+		hand.hide()
 
 
 func _input(event):
@@ -94,8 +92,8 @@ func _process(_delta):
 		$Head/Eyes/Camera3D/Crosshair/Sprite2D/AnimationPlayer.play("interactable")
 		if Input.is_action_just_pressed("interact"):
 			var group_check_interact = raycast_interact.get_collider()
-			print("pressed E")
-			print(group_check_interact.get_groups())
+			#print("pressed E")
+			#print(group_check_interact.get_groups())
 			#DoorOpens
 			if group_check_interact.is_in_group("door"):
 				group_check_interact.door_interact()

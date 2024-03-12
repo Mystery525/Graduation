@@ -7,6 +7,12 @@ func PlayGreen():
 
 func PlayRed():
 	anim_player.play("Red_Light")
-	
+
+func PlayGreenInit():
+	anim_player.play("Green_Light_Init")
+
+func PlayRedInit():
+	anim_player.play("Red_Light_Init")
+
 func Stop():
 	anim_player.play("RESET")

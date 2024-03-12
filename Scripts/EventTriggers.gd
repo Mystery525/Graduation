@@ -35,7 +35,6 @@ func LightsOut():
 	PlayMusic(0,-10,true)
 	$"../House/Hallway/Flashlight/Lp/StaticBody3D".add_to_group("flashlight")
 	$"../House/Hallway/Flashlight/Lp/StaticBody3D".collision_layer = 2
-	$"../WorldEnvironment/FogVolume".show()
 	$"../House/Hallway/Door_Close_event/AnimationPlayer".play("door_open_loop")
 	$"../House/Room/Furniture/PC Area/PC_Screen/Email_Screen".queue_free()
 	Flashlight_Intro()
@@ -195,7 +194,7 @@ func _on_first_door_close_body_entered(_body):
 	await get_tree().create_timer(12.0,false).timeout
 	cutscene.ObjTextFade("To Do: Drain the water",5.0)
 	await get_tree().create_timer(9.0,false).timeout
-	$"../DrainRoom/Wall_Lamp".PlayGreen()
+	$"../Wall_Lamp".PlayGreen()
 	await get_tree().create_timer(2.0,false).timeout
 	$"../DrainRoom/ShutterDoor4".PlayOpen()
 
@@ -204,7 +203,7 @@ func _on_water_drained_body_entered(_body):
 	$WaterDrained.queue_free()
 	$"../ControlRoom".queue_free()
 	await get_tree().create_timer(3.0,false).timeout
-	$"../DrainRoom/Wall_Lamp2".PlayGreen()
+	$"../Wall_Lamp2".PlayGreen()
 	await get_tree().create_timer(2.0,false).timeout
 	$"../Maze/Intro/ShutterDoor2".PlayOpen()
 

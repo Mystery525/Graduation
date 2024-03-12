@@ -12,15 +12,21 @@ extends Node3D
 func _ready():
 	if get_tree().current_scene.name == "Sewer":
 		intro_cutscene = false
-		load("res://Scripts/EventTriggers.gd")
+		load("res://Scenes/sewer/wall_lamp.tscn")
+		load("res://Scenes/sewer/shutter_door.tscn")
+		load("res://Scenes/Spider.tscn")
+		$"../Wall_Lamp".PlayGreenInit()
+		$"../Wall_Lamp2".PlayRedInit()
 		if Transit.Death == false:
 			ObjTextFade("Tip: Press 'C' to crouch",6.0)
 		
 	elif get_tree().current_scene.name == "World":
-		load("res://Scripts/EventTriggers.gd")
+		$"../House/Flashlight_Static".hide()
+		$"../House/Lights".hide()
 		intro_cutscene = true
 
 func CutscenePlay(Cutscene):
+	$"../House/Lights".show()
 	$"../Player/Head/Eyes/Camera3D/Crosshair".hide()
 	player.cutscene_active = true
 	player_camera.current = false
@@ -29,7 +35,6 @@ func CutscenePlay(Cutscene):
 	player_camera.current = true
 	player.cutscene_active = false
 	$"../Player/Head/Eyes/Camera3D/Crosshair".show()
-	pass
 
 func _process(_delta):
 	if intro_cutscene == true:

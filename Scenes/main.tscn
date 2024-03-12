@@ -94,6 +94,7 @@
 [ext_resource type="AudioStream" uid="uid://byus6g4vra4kr" path="res://assets/Sounds/rain_window.mp3" id="99_bc6et"]
 [ext_resource type="Script" path="res://Scripts/Door_Key.gd" id="99_flg50"]
 [ext_resource type="PackedScene" uid="uid://8tdydore0a5m" path="res://Scenes/grate_bars.tscn" id="99_qdc0q"]
+[ext_resource type="VoxelGIData" uid="uid://cqsif0jocrgc1" path="res://Scenes/main.VoxelGI_data.res" id="99_qqqu1"]
 [ext_resource type="AudioStream" uid="uid://dnx4abesu2g8l" path="res://assets/Sounds/door_close.mp3" id="100_2vbhe"]
 [ext_resource type="PackedScene" uid="uid://c54fnbuq5hdoh" path="res://Scenes/grate_base.tscn" id="100_yueam"]
 [ext_resource type="AudioStream" uid="uid://dm6fisit3tskt" path="res://assets/Sounds/door_open.mp3" id="101_1drmr"]
@@ -101,25 +102,13 @@
 
 [sub_resource type="Environment" id="Environment_fulr0"]
 background_mode = 2
-background_energy_multiplier = 0.0
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.0
 ssr_fade_out = 0.329877
 sdfgi_read_sky_light = false
 glow_normalized = true
 glow_blend_mode = 0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
-volumetric_fog_length = 10.0
-volumetric_fog_sky_affect = 0.0
 adjustment_enabled = true
 adjustment_contrast = 1.05
 adjustment_saturation = 1.2
-
-[sub_resource type="FogMaterial" id="FogMaterial_gcv1x"]
-density = 0.05
-albedo = Color(0.152941, 0.152941, 0.152941, 1)
-edge_fade = 1.65642
 
 [sub_resource type="SphereMesh" id="SphereMesh_xwspo"]
 radius = 0.02
@@ -947,12 +936,6 @@ size = Vector3(1, 5.49316, 5.36279)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fulr0")
-
-[node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
-transform = Transform3D(2.70058, 0, 0, 0, 2.70058, 0, 0, 0, 5.39365, 9.19953, 2.61546, 2.66476)
-visible = false
-size = Vector3(4.17119, 2, 2.75684)
-material = SubResource("FogMaterial_gcv1x")
 
 [node name="DustParticles" parent="WorldEnvironment" instance=ExtResource("2_ago5p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9706, 2.15609, 4.53598)
@@ -2171,12 +2154,11 @@ shape = SubResource("BoxShape3D_8myjv")
 
 [node name="Flashlight_Static" type="SpotLight3D" parent="House"]
 transform = Transform3D(1, -1.86061e-08, 7.26134e-08, -7.26134e-08, -0.480897, 0.876777, 1.86061e-08, -0.876777, -0.480897, 6.37161, -81.5172, 51.5993)
-visible = false
-light_energy = 15.667
-light_volumetric_fog_energy = 5.222
+light_energy = 8.0
 light_projector = ExtResource("9_jrrua")
+light_bake_mode = 0
 shadow_enabled = true
-spot_range = 7.93346
+spot_range = 7.07966
 spot_angle = 26.688
 
 [node name="Lights" type="Node3D" parent="House"]
@@ -2357,6 +2339,11 @@ max_db = -2.0
 max_distance = 20.0
 emission_angle_enabled = true
 emission_angle_degrees = 60.0
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9074, 2.8111, 10.0407)
+size = Vector3(33.6141, 6.96692, 27.9489)
+data = ExtResource("99_qqqu1")
 
 [connection signal="body_entered" from="EventTriggers/tv_trigger" to="EventTriggers" method="_on_tv_trigger_body_entered"]
 [connection signal="body_entered" from="House/Hallway/Area3D" to="EventTriggers" method="_on_area_3d_body_entered"]

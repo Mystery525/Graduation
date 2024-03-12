@@ -125,7 +125,6 @@ mouse_filter = 1
 
 [node name="Hand" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
-visible = false
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Hand"]
 transform = Transform3D(1, 0, 1.75199e-14, 0, 1, 0, -1.75199e-14, 0, 1, 0, 1.788, -0.110008)
@@ -133,6 +132,7 @@ light_energy = 5.0
 light_indirect_energy = 3.0
 light_volumetric_fog_energy = 0.2
 light_projector = ExtResource("14_0nx16")
+light_bake_mode = 0
 shadow_enabled = true
 spot_range = 11.6323
 spot_angle = 30.1752

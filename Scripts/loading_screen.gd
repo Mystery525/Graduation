@@ -10,7 +10,10 @@ func _ready():
 		ResourceLoader.load_threaded_request(RoomScene)
 	elif Transit.SceneChoose == 2:
 		ResourceLoader.load_threaded_request(SewerScene)
-	
+		preload("res://Scenes/sewer/wall_lamp.tscn")
+		preload("res://Scenes/sewer/shutter_door.tscn")
+		preload("res://Scenes/sewer_water.gdshader")
+
 func _process(_delta):
 	if Transit.SceneChoose == 1:
 		scene_load_status = ResourceLoader.load_threaded_get_status(RoomScene,progress)
